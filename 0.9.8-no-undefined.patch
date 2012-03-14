@@ -1,0 +1,11 @@
+--- origsrc/opus-0.9.8/Makefile.am	2011-10-28 11:08:46.000000000 -0500
++++ src/opus-0.9.8/Makefile.am	2012-03-13 17:14:46.136867400 -0500
+@@ -22,6 +22,8 @@ include opus_headers.txt
+ 
+ libopus_la_SOURCES = $(CELT_SOURCES) $(SILK_SOURCES) $(OPUS_SOURCES)
+ 
++libopus_la_LDFLAGS = -version-info $(OPUS_LT_CURRENT):$(OPUS_LT_REVISION):$(OPUS_LT_AGE) -no-undefined
++
+ pkginclude_HEADERS = include/opus.h include/opus_multistream.h include/opus_types.h include/opus_defines.h
+ 
+ noinst_HEADERS = $(OPUS_HEAD) $(SILK_HEAD) $(CELT_HEAD)
