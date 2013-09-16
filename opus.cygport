@@ -1,26 +1,27 @@
 NAME="opus"
-VERSION=1.0.2
+VERSION=1.0.3
 RELEASE=1
-CATEGORY="Audio"
+CATEGORY="Libs"
 SUMMARY="Opus interactive audio codec"
 DESCRIPTION="The Opus codec is designed for interactive speech and audio
 transmission over the Internet. It is designed by the IETF Codec Working
 Group and incorporates technology from Skype's SILK codec and Xiph.Org's
 CELT codec."
 HOMEPAGE="http://www.opus-codec.org/"
-SRC_URI="http://downloads.xiph.org/releases/opus/${P}.tar.gz"
+SRC_URI="http://downloads.xiph.org/releases/opus/opus-${VERSION}.tar.gz"
 PATCH_URI="0.9.8-no-undefined.patch"
 
-PKG_NAMES="libopus0 libopus-devel"
+PKG_NAMES="libopus0 libopus-devel libopus-doc"
 libopus0_CONTENTS="--exclude=html --exclude=*.pdf usr/bin/cygopus-0.dll usr/share/doc/"
-libopus_devel_CONTENTS="usr/include/ usr/lib/ usr/share/aclocal/
-                        usr/share/doc/${NAME}/*[html|pdf] usr/share/man/man3/"
+libopus_devel_CONTENTS="usr/include/ usr/lib/ usr/share/aclocal/"
+libopus_doc_CATEGORY="Doc"
+libopus_doc_CONTENTS="usr/share/doc/${NAME}/*[html|pdf] usr/share/man/man3/"
 
 src_compile() {
 	cd ${S}
 	cygautoreconf
 	cd ${B}
-	cygconf --disable-static
+	cygconf
 	cygmake
 
 	cd ${B}/doc/latex
